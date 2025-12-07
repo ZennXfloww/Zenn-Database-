@@ -1,0 +1,116 @@
+:root{
+  --bg:#0b0f1a;
+  --card:#101628;
+  --muted:#9aa4c7;
+  --text:#e8ecff;
+  --primary:#9b5cff;
+  --secondary:#00d4ff;
+  --accent:#6dd6ff;
+  --ring: rgba(155,92,255,.6);
+  --glass: rgba(255,255,255,.06);
+  --success:#38d39f;
+  --danger:#ef476f;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; background: radial-gradient(80% 60% at 10% 10%, rgba(155,92,255,.15), transparent 40%),
+                               radial-gradient(70% 60% at 90% 0%, rgba(0,212,255,.12), transparent 40%),
+                               linear-gradient(180deg,#0a0f1a 0%, #0a0f1a 60%, #0b1120 100%);
+  color:var(--text); font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu; overflow-x:hidden;
+}
+a{color:inherit}
+/* Header */
+.nav{position:fixed; inset:0 0 auto 0; height:64px; display:flex; align-items:center; justify-content:space-between;
+  padding:0 20px; background:linear-gradient(90deg, rgba(16,22,40,.6), rgba(16,22,40,.2)); backdrop-filter: blur(8px);
+  border-bottom:1px solid rgba(255,255,255,.06); z-index:50;}
+.brand{display:flex; align-items:center; gap:12px; font-weight:700}
+.logo{width:34px;height:34px; border-radius:12px; background: linear-gradient(135deg, var(--primary), var(--secondary));
+      box-shadow:0 0 22px rgba(155,92,255,.35), 0 0 28px rgba(0,212,255,.22);}
+.brand h1{font-family:Orbitron, Poppins; font-size:18px; letter-spacing:1px; margin:0}
+.hamburger{width:44px;height:44px; border-radius:14px; display:grid; place-items:center; cursor:pointer;
+  background:var(--glass); border:1px solid rgba(255,255,255,.08); transition:.25s;}
+.hamburger:hover{transform:translateY(-2px); box-shadow:0 8px 24px rgba(0,0,0,.35)}
+/* Drawer */
+.drawer{position:fixed; inset:64px auto 0 0; width:290px; background:linear-gradient(180deg, #0d1324, #0a0f1a);
+  border-right:1px solid rgba(255,255,255,.06); transform:translateX(-100%); transition:transform .35s ease;
+  z-index:40; padding:18px 16px; overflow-y:auto; box-shadow: 10px 0 40px rgba(0,0,0,.35)}
+.drawer.open{transform:translateX(0)}
+.menu h4{font-size:13px; color:var(--muted); text-transform:uppercase; letter-spacing:1.2px; margin:16px 12px}
+.menu a{display:flex; align-items:center; gap:12px; padding:12px 14px; margin:6px 6px; border-radius:14px; text-decoration:none; font-weight:500;
+  background:transparent; border:1px solid transparent; transition:.25s}
+.menu a:hover{background:var(--glass); border-color:rgba(255,255,255,.06)}
+.menu a.active{background:linear-gradient(90deg, rgba(155,92,255,.16), rgba(0,212,255,.10)); border-color:rgba(155,92,255,.25)}
+/* Layout */
+.container{max-width:1100px; margin:100px auto 60px; padding:0 18px}
+/* Cards */
+.card{background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+  border:1px solid rgba(255,255,255,.08); border-radius:22px; padding:22px; box-shadow: 0 10px 30px rgba(0,0,0,.35);}
+.card + .card{margin-top:18px}
+.title{font-family:Orbitron; letter-spacing:1px; margin:0 0 6px; font-size:22px}
+.subtitle{margin:0 0 18px; color:var(--muted); font-size:14px}
+/* Forms */
+.input, select{width:100%; padding:12px 14px; border-radius:14px; border:1px solid rgba(255,255,255,.1);
+  background:rgba(7,10,20,.6); color:var(--text); outline:none; transition:.2s; font-size:14px}
+.input:focus, select:focus{border-color:var(--ring); box-shadow:0 0 0 3px rgba(155,92,255,.18)}
+.row{display:grid; grid-template-columns: 1fr 1fr; gap:12px}
+.btn{display:inline-flex; align-items:center; gap:10px; padding:12px 16px; border-radius:14px; border:1px solid transparent;
+  background:linear-gradient(90deg, var(--primary), var(--secondary)); color:white; cursor:pointer; font-weight:600;
+  letter-spacing:.3px; box-shadow:0 10px 26px rgba(155,92,255,.35), 0 4px 16px rgba(0,212,255,.25); transition:.25s}
+.btn:hover{transform:translateY(-2px)}
+.btn.ghost{background:transparent; border-color:rgba(255,255,255,.12)}
+.btn.danger{background:linear-gradient(90deg, #ff6a88, #ff99ac)}
+/* Table */
+table{width:100%; border-collapse:separate; border-spacing:0 10px}
+th{text-align:left; font-size:12px; color:var(--muted); font-weight:600}
+td{background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.06); padding:12px 14px; border-left:none; border-right:none}
+tr{border-radius:12px}
+/* Hero / Login */
+.hero{min-height:calc(100vh - 64px); display:grid; place-items:center; padding:28px 18px; position:relative;}
+.glow{position:absolute; inset:auto auto 10% -10%; width:320px; height:320px; border-radius:50%; filter:blur(60px);
+  background: radial-gradient(circle at 30% 30%, rgba(155,92,255,.28), transparent 60%),
+              radial-gradient(circle at 70% 60%, rgba(0,212,255,.25), transparent 60%);
+  opacity:.7; pointer-events:none}
+.login{display:grid; grid-template-columns: 1.1fr 1fr; gap:30px; align-items:center; max-width:980px; width:100%;}
+.illus{padding:20px}
+.illus h2{font-family:Orbitron; font-size:48px; line-height:1.05; margin:0 0 12px}
+.illus p{color:var(--muted)}
+.login-card{padding:22px; border-radius:22px}
+.badge{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; font-size:12px; color:#dfe7ff;
+  background:linear-gradient(90deg, rgba(155,92,255,.22), rgba(0,212,255,.18)); border:1px solid rgba(255,255,255,.12)}
+/* Animations */
+.reveal{opacity:0; transform: translateY(18px); filter: blur(6px);}
+.reveal.visible{opacity:1; transform:none; filter:none; transition: opacity .8s ease, transform .8s ease, filter .8s ease}
+.reveal.left{transform: translateX(-24px)}
+.reveal.right{transform: translateX(24px)}
+/* Utility */
+.hidden{display:none !important}
+.flex{display:flex; gap:12px; align-items:center}
+.space{height:18px}
+.chip{display:inline-flex; align-items:center; gap:6px; padding:6px 10px; border-radius:999px; font-size:12px;
+  background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08)}
+@media (max-width:900px){
+  .login{grid-template-columns:1fr}
+  .illus h2{font-size:38px}
+  .row{grid-template-columns:1fr}
+}
+footer {
+  text-align: center;
+  padding: 10px;
+  font-size: 13px;
+  color: #aaa;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: transparent;
+}
+
+footer a {
+  color: #9b5cff; /* bisa ganti sesuai tema */
+  text-decoration: none;
+  font-weight: 600;
+}
+footer a:hover {
+  text-decoration: underline;
+}
