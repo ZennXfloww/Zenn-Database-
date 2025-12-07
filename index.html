@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DB Number — Login & Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="nav">
+    <div class="brand">
+      <i class="fas fa-user-secret"></i> <h1 id="brand"></h1>
+    </div>
+    <div id="userBadge" class="chip hidden"><i class="fas fa-user"></i><span id="who"></span></div>
+    <button id="btnHamburger" class="hamburger hidden" aria-label="Menu">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </header>
+
+  <aside id="drawer" class="drawer">
+    <nav class="menu">
+      <h4>Navigasi</h4>
+      <a href="#" data-view="dashboard" class="active"><i class="fa-solid fa-home"></i> Dashboard</a>
+      <a href="#" data-view="numbers"><i class="fa-solid fa-square-plus"></i> Add Nomor</a>
+      <a href="#" data-view="list"><i class="fa-solid fa-list-ul"></i> List Nomor</a>
+      <div id="adminSection" class="hidden">
+        <h4>Admin</h4>
+        <a href="#" data-view="accounts"><i class="fa-solid fa-user-gear"></i> Manage Account</a>
+      </div>
+      <h4>Lainnya</h4>
+      <a href="#" id="btnLogout"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
+    </nav>
+  </aside>
+
+  <main id="view-login" class="hero">
+    <div class="glow"></div>
+    <section class="login">
+      <div class="illus reveal left">
+        <span class="badge"><i class="fa-solid fa-database"></i> Storage</span>
+        <h2>Database <span style="background:linear-gradient(90deg,var(--primary),var(--secondary));-webkit-background-clip:text;background-clip:text;color:transparent">Ravage</span></h2>
+        <p>Menciptakan platform manajemen data nomor yang aman, modern, dan responsif...</p>
+        <div class="space"></div>
+        <div class="flex">
+          <a href="https://github.com/DaffaDeveloper" target="_blank" class="chip">
+            <i class="fa-brands fa-github"></i> GitHub
+          </a>
+          <a href="https://about-daffaa.vercel.app" target="_blank" class="chip">
+            <i class="fas fa-address-card"></i> My Portofolio
+          </a>
+          <span class="chip"><i class="fa-solid fa-shield"></i> High Protection</span>
+        </div>
+      </div>
+      <div class="card login-card reveal right" style="max-width:420px; width:100%">
+        <h3 class="title">Masuk</h3>
+        <p class="subtitle">Silahkan Masukan Akun Yang Telah terdaftar.</p>
+        <form id="formLogin">
+          <div class="row">
+            <div>
+              <label>Username</label>
+              <input id="username" class="input" placeholder="nama pengguna" required />
+            </div>
+            <div>
+              <label>Password</label>
+              <input id="password" class="input" type="password" placeholder="••••••" required />
+            </div>
+          </div>
+          <div class="space"></div>
+          <button class="btn" type="submit"><i class="fa-solid fa-right-to-bracket"></i> Login</button>
+          <div id="loginMsg" class="subtitle" style="margin-top:12px"></div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <main id="view-dashboard" class="container hidden">
+    <section class="card reveal">
+      <h3 class="title">Selamat datang</h3>
+      <p class="subtitle">Silahkan Klik Opsi Menu Yang Berada Di Kanan Atas.</p>
+      <p class="subtitle">Status user adalah untuk <b>Reseller</b> dan Status Admin adalah untuk <b>Partner</b></p>
+      <div class="flex">
+        <span class="chip"><i class="fa-solid fa-address-card"></i> Status :</span>
+        <span class="chip"><i class="fa-solid fa-user-shield"></i> <span id="roleChip">user</span></span>
+      </div>
+    </section>
+  </main>
+
+  <main id="view-numbers" class="container hidden">
+    <section class="card reveal left">
+      <h3 class="title"><i class="fa-solid fa-square-plus"></i> Tambah Nomor</h3>
+      <p class="subtitle">Masukkan nomor (contoh: 62812345678).</p>
+      <div class="row">
+        <input id="numberInput" class="input" placeholder="Hanya angka…" />
+        <button id="btnAddNumber" class="btn"><i class="fa-solid fa-plus"></i> Tambah</button>
+      </div>
+      <div id="numMsg" class="subtitle" style="margin-top:12px"></div>
+    </section>
+  </main>
+
+  <main id="view-list" class="container hidden">
+    <section class="card reveal right">
+      <h3 class="title"><i class="fa-solid fa-list"></i> Daftar Nomor</h3>
+      <p class="subtitle">Semua nomor yang tersimpan di Database.</p>
+      <div class="space"></div>
+      <div style="overflow:auto">
+        <table>
+          <thead>
+            <tr><th>No</th><th>Nomor</th><th>Opsi</th></tr>
+          </thead>
+          <tbody id="numbersTable"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <main id="view-accounts" class="container hidden">
+    <section class="card reveal">
+      <h3 class="title"><i class="fa-solid fa-user-gear"></i> Manage Account</h3>
+      <p class="subtitle">Buat & hapus akun. Hanya untuk status <b>admin</b>.</p>
+      <div class="row">
+        <input id="newUser" class="input" placeholder="username" />
+        <input id="newPass" class="input" placeholder="password" />
+      </div>
+      <div class="row" style="margin-top:10px">
+        <select id="newRole">
+          <option value="user">user</option>
+          <option value="admin">admin</option>
+        </select>
+        <button id="btnCreate" class="btn"><i class="fa-solid fa-user-plus"></i> Buat Akun</button>
+      </div>
+      <div id="accMsg" class="subtitle" style="margin-top:12px"></div>
+      <div class="space"></div>
+      <div class="card">
+        <h4 class="title" style="font-size:18px">Daftar Akun</h4>
+        <div style="overflow:auto">
+          <table>
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Username</th>
+                <th>Status</th>
+                <th>Opsi</th>
+              </tr>
+            </thead>
+            <tbody id="accountsTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p id="code"></p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
